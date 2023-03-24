@@ -82,7 +82,7 @@ function collect_agent_information_new()
 # checking parameters passed to the script validating, if not enough parameters are passed and printing usage example 
 if [ -z "$dsm" ] || [ -z "$tenantID" ] || [ -z "$token" ] || [ -z "$policyID" ] || [ -z "$groupID" ]; then
     echo "Usage: sh $0 dsm <tenantID> <token> <policyID> <groupID>"
-    echo 'e.g.: sh $0 dsm://agents.deepsecurity.trendmicro.com:443/ "tenantID:5BAB243A-4310-4EBE-81C7-E5FDDF6D5292" "token:EB5C2E13-F676-8979-22C4-21A5F31770D7" "policyid:662" "groupid:529"'
+    echo 'e.g.: sh $0 dsm://agents.deepsecurity.trendmicro.com:443/ "tenantID:5BAB243A-4310-4EBE-44BE-E5FDDF6D5B24" "token:EB5C2E13-F676-8979-22C4-E5FDDF6D5B24" "policyid:662" "groupid:529"'
     exit 1
 fi
 
@@ -172,4 +172,4 @@ function main {
 
 main
 
-#./migration_c1ws_agents.sh "dsm://agents.deepsecurity.trendmicro.com:443/" "tenantID:5BAB243A-4310-4EBE-81C7-E5FDDF6D5292" "token:EB5C2E13-F676-8979-22C4-21A5F31770D7" "policyid:662" "groupid:529"
+#./migration_c1ws_agents.sh "dsm://agents.deepsecurity.trendmicro.com:443/" "tenantID:5BAB243A-4310-4EBE-44BE-E5FDDF6D5B24" "token:EB5C2E13-F676-8979-22C4-E5FDDF6D5B24" "policyid:662" "groupid:529"
