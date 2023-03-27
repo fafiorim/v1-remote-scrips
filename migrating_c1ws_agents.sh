@@ -20,7 +20,9 @@ date=`date +%Y-%m-%d_%H-%M-%S`
 hostname=`hostname --fqdn`
 os=`cat /etc/os-release | grep PRETTY_NAME | cut -d '=' -f2`
 kernel=`uname -r`
-agent_version=`cat /opt/ds_agent/cat version.txt | cut -d ' ' -f7`
+agent_version=`cat /opt/ds_agent/version.txt | cut -d ' ' -f7`
+uptime_before=`uptime`
+uptime_after=""
 
 # creating a temporary directory to store the agent information
 mkdir /tmp/agent_migration
@@ -82,7 +84,7 @@ function collect_agent_information_new()
 # checking parameters passed to the script validating, if not enough parameters are passed and printing usage example 
 if [ -z "$dsm" ] || [ -z "$tenantID" ] || [ -z "$token" ] || [ -z "$policyID" ] || [ -z "$groupID" ]; then
     echo "Usage: sh $0 dsm <tenantID> <token> <policyID> <groupID>"
-    echo 'e.g.: sh $0 dsm://agents.deepsecurity.trendmicro.com:443/ "tenantID:5BAB243A-4310-4EBE-44BE-E5FDDF6D5B24" "token:EB5C2E13-F676-8979-22C4-E5FDDF6D5B24" "policyid:662" "groupid:529"'
+    echo 'e.g.: sh $0 dsm://agents.deepsecurity.trendmicro.com:443/ "tenantID:5BAB243A-4310-4EBE-81C7-E5FDDF6D5292" "token:EB5C2E13-F676-8979-22C4-21A5F31770D7" "policyid:662" "groupid:529"'
     exit 1
 fi
 
@@ -116,6 +118,7 @@ function activate ()
     fi
     echo "##############################################################"
     echo "                                                              "
+    uptime_after=`uptime`
 }
 
 ###Notes: Add description (old and new one)
@@ -131,6 +134,7 @@ function printing_execution_logs {
     echo "Hostname: $hostname"
     echo "OS: $os"
     echo "Kernel: $kernel"
+    echo "Uptime: $uptime_before"
     echo "##############################################################"
     echo "                                                              "
     echo "########################### [OLD] ############################"
@@ -158,6 +162,7 @@ function printing_execution_logs {
     echo "HOST ID: $hostID_new"
     echo "TENANT ID: $tenantGUID_new" #tenantID
     echo "ENDPOINT GUID: $endpointGUID_new"
+    echo "Uptime: $uptime_after"
     echo "##############################################################"
 }
 
@@ -172,4 +177,4 @@ function main {
 
 main
 
-#./migration_c1ws_agents.sh "dsm://agents.deepsecurity.trendmicro.com:443/" "tenantID:5BAB243A-4310-4EBE-44BE-E5FDDF6D5B24" "token:EB5C2E13-F676-8979-22C4-E5FDDF6D5B24" "policyid:662" "groupid:529"
+#./migration_c1ws_agents.sh "dsm://agents.deepsecurity.trendmicro.com:443/" "tenantID:5BAB243A-4310-4EBE-81C7-E5FDDF6D5292" "token:EB5C2E13-F676-8979-22C4-21A5F31770D7" "policyid:662" "groupid:529"
